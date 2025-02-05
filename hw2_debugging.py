@@ -5,6 +5,8 @@ def merge_sort(array):
     """ executes merge sort on array. """
     if len(array) == 1:
         return array
+
+    half = len(array)//2
     return recombine(merge_sort(arr[:half]), merge_sort(arr[half:]))
 
 def recombine(left_arr, right_arr):
@@ -53,7 +55,7 @@ def bubble_sort(arr):
                 arr[j] = arr[j + 1]
                 arr[j + 1] = temp
     return arr  #
-  
+
 def insertion_sort(array):
     """ runs insertion sort on array.
 
@@ -78,16 +80,13 @@ def insertion_sort(array):
 
 
 curr_arr = rand.random_array([None] * 20)
-sorted_arr = bubble_sort(curr_arr)
-print("Bubble sorted array is:", sorted_arr)
+bubble_arr_out = bubble_sort(curr_arr)
+print("Bubble sorted array is:", bubble_arr_out)
 
 arr_out = merge_sort(curr_arr)
 print("Merge sorted array is:", arr_out)
 
-
-
-arr = rand.random_array([None] * 20)
-arr_out = merge_sort(arr)
+arr_out = merge_sort(curr_arr)
 
 insert_sort_arr = insertion_sort(arr)
 
