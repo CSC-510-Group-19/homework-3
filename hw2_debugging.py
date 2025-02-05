@@ -7,7 +7,7 @@ def merge_sort(array):
         return array
 
     half = len(array)//2
-    return recombine(merge_sort(arr[:half]), merge_sort(arr[half:]))
+    return recombine(merge_sort(array[:half]), merge_sort(array[half:]))
 
 def recombine(left_arr, right_arr):
     """recombine is the recombining step of merge sort.
@@ -88,7 +88,7 @@ print("Merge sorted array is:", arr_out)
 
 arr_out = merge_sort(curr_arr)
 
-insert_sort_arr = insertion_sort(arr)
+insert_sort_arr = insertion_sort(curr_arr)
 
 print(arr_out)
 print(insert_sort_arr)
