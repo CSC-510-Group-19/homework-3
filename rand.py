@@ -16,6 +16,6 @@ def random_array(arr):
         an array with random values.
     """
 
-    for i in enumerate(arr):
+    for i, _ in enumerate(arr):
         arr[i] = secrets.randbelow(20) + 1
     return arr
