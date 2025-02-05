@@ -3,7 +3,7 @@ import rand
 
 def merge_sort(array):
     """ executes merge sort on array. """
-    if len(array) == 1:
+    if len(array) <= 1:
         return array
 
     half = len(array)//2
