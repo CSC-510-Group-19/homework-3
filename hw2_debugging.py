@@ -77,4 +77,3 @@ insert_sort_arr = insertion_sort(arr)
 
 print(arr_out)
 print(insert_sort_arr)
-
