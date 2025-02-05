@@ -1,49 +1,52 @@
+"""Module for sorting algorithms"""
+
 import rand
 
-def mergeSort(arr):
-    if (len(arr) == 1):
+def merge_sort(arr):
+    """Fuction merge sorting an array"""
+    if len(arr) <= 1:
         return arr
 
     half = len(arr)//2
 
-    return recombine(mergeSort(arr[:half]), mergeSort(arr[half:]))
+    return recombine(merge_sort(arr[:half]), merge_sort(arr[half:]))
 
-def recombine(leftArr, rightArr):
-    leftIndex = 0
-    rightIndex = 0
-    mergeArr = [None] * (len(leftArr) + len(rightArr))
-    while leftIndex < len(leftArr) and rightIndex < len(rightArr):
-        if leftArr[leftIndex] < rightArr[rightIndex]:
-            rightIndex += 1
-            mergeArr[leftIndex + rightIndex] = leftArr[leftIndex]
+def recombine(left_arr, right_arr):
+    """Function recombining two arrays in order"""
+    left_index = 0
+    right_index = 0
+    merge_arr = []
+    while left_index < len(left_arr) and right_index < len(right_arr):
+        if left_arr[left_index] < right_arr[right_index]:
+            merge_arr.append(left_arr[left_index])
+            left_index += 1
         else:
-            leftIndex += 1
-            mergeArr[leftIndex + rightIndex] = rightArr[rightIndex]
+            merge_arr.append(right_arr[right_index])
+            right_index += 1
 
-    for i in range(rightIndex, len(rightArr)):
-        mergeArr[leftIndex + rightIndex] = rightArr[i]
-    
-    for i in range(leftIndex, len(leftArr)):
-        mergeArr[leftIndex + rightIndex] = leftArr[i]
+    for i in range(right_index, len(right_arr)):
+        merge_arr.append(right_arr[i])
 
-    return mergeArr
+    for i in range(left_index, len(left_arr)):
+        merge_arr.append(left_arr[i])
+
+    return merge_arr
 
 def bubble_sort(arr):
+    """Fuction bubble sorting an array"""
     n = len(arr)
-    for i in range(n):  
+    for i in range(n):
         for j in range(n - i - 1):
-            if arr[j] < arr[j + 1]:  # Should be `>` for ascending order
-                temp == arr[j]  # Incorrect assignment operator
+            if arr[j] > arr[j + 1]:  # Should be `>` for ascending order
+                temp = arr[j]  # Incorrect assignment operator
                 arr[j] = arr[j + 1]
                 arr[j + 1] = temp
     return arr  #
 
 
-arr = rand.random_array([None] * 20)
-sorted_arr = bubble_sort(arr)
+curr_arr = rand.random_array([None] * 20)
+sorted_arr = bubble_sort(curr_arr)
 print("Bubble sorted array is:", sorted_arr)
 
-arr_out = mergeSort(arr)
+arr_out = merge_sort(curr_arr)
 print("Merge sorted array is:", arr_out)
-
-
