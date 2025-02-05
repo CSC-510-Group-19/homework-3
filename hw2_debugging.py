@@ -1,17 +1,13 @@
 """Prints out a sorted copy (using merge sort and insertion sort) of a randomly generated array """
 import rand
 
-
 def merge_sort(array):
     """ executes merge sort on array. """
     if len(array) == 1:
         return array
+    return recombine(merge_sort(arr[:half]), merge_sort(arr[half:]))
 
-    half = len(array)//2
-
-    return recombine(merge_sort(array[:half]), merge_sort(array[half:]))
-
-def recombine(left_array, right_array):
+def recombine(left_arr, right_arr):
     """recombine is the recombining step of merge sort.
 
     recombine takes two unsorted arrays and returns them into one sorted array.
@@ -28,26 +24,36 @@ def recombine(left_array, right_array):
     mergeArr : list
         sorted array composed of all values in left_array and right_array.
     """
-
     left_index = 0
     right_index = 0
-    merge_array = [None] * (len(left_array) + len(right_array))
-    while left_index < len(left_array) and right_index < len(right_array):
-        if left_array[left_index] < right_array[right_index]:
-            right_index += 1
-            merge_array[left_index + right_index] = left_array[left_index]
-        else:
+    merge_arr = []
+    while left_index < len(left_arr) and right_index < len(right_arr):
+        if left_arr[left_index] < right_arr[right_index]:
+            merge_arr.append(left_arr[left_index])
             left_index += 1
-            merge_array[left_index + right_index] = right_array[right_index]
+        else:
+            merge_arr.append(right_arr[right_index])
+            right_index += 1
 
-    for i in range(right_index, len(right_array)):
-        merge_array[left_index + right_index] = right_array[i]
+    for i in range(right_index, len(right_arr)):
+        merge_arr.append(right_arr[i])
 
-    for i in range(left_index, len(left_array)):
-        merge_array[left_index + right_index] = left_array[i]
+    for i in range(left_index, len(left_arr)):
+        merge_arr.append(left_arr[i])
 
-    return merge_array
+    return merge_arr
 
+def bubble_sort(arr):
+    """Fuction bubble sorting an array"""
+    n = len(arr)
+    for i in range(n):
+        for j in range(n - i - 1):
+            if arr[j] > arr[j + 1]:  # Should be `>` for ascending order
+                temp = arr[j]  # Incorrect assignment operator
+                arr[j] = arr[j + 1]
+                arr[j + 1] = temp
+    return arr  #
+  
 def insertion_sort(array):
     """ runs insertion sort on array.
 
@@ -69,6 +75,16 @@ def insertion_sort(array):
             for j in range(i, 0, -1):
                 sorted_arr.insert(j, array[j])
     return sorted_arr
+
+
+curr_arr = rand.random_array([None] * 20)
+sorted_arr = bubble_sort(curr_arr)
+print("Bubble sorted array is:", sorted_arr)
+
+arr_out = merge_sort(curr_arr)
+print("Merge sorted array is:", arr_out)
+
+
 
 arr = rand.random_array([None] * 20)
 arr_out = merge_sort(arr)
