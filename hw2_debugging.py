@@ -28,9 +28,22 @@ def recombine(leftArr, rightArr):
 
     return mergeArr
 
-arr = rand.random_array([None] * 20)
-arr_out = mergeSort(arr)
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):  
+        for j in range(n - i - 1):
+            if arr[j] < arr[j + 1]:  # Should be `>` for ascending order
+                temp == arr[j]  # Incorrect assignment operator
+                arr[j] = arr[j + 1]
+                arr[j + 1] = temp
+    return arr  #
 
-print(arr_out)
+
+arr = rand.random_array([None] * 20)
+sorted_arr = bubble_sort(arr)
+print("Bubble sorted array is:", sorted_arr)
+
+arr_out = mergeSort(arr)
+print("Merge sorted array is:", arr_out)
 
 
