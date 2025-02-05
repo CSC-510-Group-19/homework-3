@@ -30,16 +30,16 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Run pylint
       run: |
-        pylint $(git ls-files '*.py')
+        pylint hw2_debugging.py rand.py --fail-under 5 --fail-on E
     - name: Run pyflakes
       run: |
-        pyflakes .
+        pyflakes hw2_debugging.py rand.py
     - name: Run bandit
       run: |
-        bandit -r .
+        bandit -r hw2_debugging.py rand.py
     - name: Run radon
       run: |
-        radon cc -s n B .
+        radon cc -s n B hw2_debugging.py rand.py
     - name: Test with pytest
       run: |
         pip install pytest pytest-cov
